@@ -15,7 +15,7 @@ def prompt_user
 end
 
 def get_user_input
-  input = gets
+  gets.chomp
 end
 
 def end_game(card_total)
@@ -23,7 +23,7 @@ def end_game(card_total)
 end
 
 def initial_round
-  card_total = deal_card + deal_card
+  card_total = (deal_card + deal_card)
   display_card_total(card_total)
   card_total
 end
@@ -32,7 +32,7 @@ def hit?(card_total)
   prompt_user
   case get_user_input
   when "h"
-    card_total = card_total + deal_card
+    card_total += deal_card
     card_total
   when "s"
     card_total
@@ -41,7 +41,7 @@ def hit?(card_total)
 end
 
 def invalid_command
-  puts "Sorry, you've entered an invalid command."
+  puts "Please enter a valid command."
   prompt_user
 end
 
