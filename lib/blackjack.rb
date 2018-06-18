@@ -24,18 +24,28 @@ def end_game(card_total)
 end
 
 def initial_round
-  deal_card
-  deal_card
-  card_total = deal_card + deal_card
+  card_one = deal_card
+  card_two = deal_card
+  card_total = card_one + card_two
   display_card_total(card_total)
+  card_total
 end
 
-def hit?
-  # code hit? here
+def hit?(card_total)
+  prompt_user
+  input = get_user_input
+  if input == "s"
+    card_total
+  elsif input == "h"
+    card_total += deal_card
+  else
+    invalid_command
+    prompt_user
+  end
 end
 
 def invalid_command
-  # code invalid_command here
+  puts "Please enter a valid command"
 end
 
 #####################################################
@@ -43,6 +53,12 @@ end
 #####################################################
 
 def runner
-  # code runner here
+  welcome
+  card_total = initial_round
+  until card_total > 21
+    card_total = hit?(card_total)
+    display_card_total(card_total)
+  end
+  end_game(card_total)
 end
     
